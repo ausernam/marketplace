@@ -31,6 +31,7 @@ import {
   TOKEN_MAX_CONVERSION_AMOUNT,
   AUCTION_HELPERS,
   hasSeenAuctionHelper,
+  hasAuctionFinished,
   dismissAuctionHelper,
   getYoutubeTutorialId,
   addConversionFee,
@@ -129,7 +130,10 @@ export default class AuctionPage extends React.PureComponent {
   showAuctionModal(props) {
     const { onShowAuctionModal } = props
 
-    if (!hasSeenAuctionHelper(AUCTION_HELPERS.SEEN_AUCTION_MODAL)) {
+    if (
+      !hasSeenAuctionHelper(AUCTION_HELPERS.SEEN_AUCTION_MODAL) &&
+      !hasAuctionFinished()
+    ) {
       onShowAuctionModal()
     }
   }
